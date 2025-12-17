@@ -4,12 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a research documentation repository containing a comprehensive study on integration challenges between DivKit (Yandex's Server-Driven UI framework) and modern declarative UI frameworks (SwiftUI/Jetpack Compose). The repository contains only documentation - no actual implementation code exists.
+This is an active implementation project for studying integration challenges between DivKit (Yandex's Server-Driven UI framework) and modern declarative UI frameworks (SwiftUI/Jetpack Compose). The repository contains both research documentation and working iOS implementation code.
 
 Project structure:
 
-- `/ios` - Root of the Xcode workspace and project, all iOS specific code or scripts should be put here
-- `/android` - Android specific code and build scripts
+- `/ios` - iOS implementation (Xcode workspace, project files, Swift source code)
+  - `DivStudyApp.xcworkspace` - Main workspace
+  - `DivStudyApp.xcodeproj` - Xcode project
+- `/android` - Android implementation (planned)
+- `/docs` - Research documentation and technical analysis
 
 ## Key Research Document
 
@@ -44,9 +47,20 @@ Based on the study documentation, the experimental app was designed for:
 
 ## Development Commands
 
-No build, test, or development commands are available in this repository as it contains only documentation. Any future implementation would need to establish:
-- iOS: Xcode project setup with Swift Package Manager
-- Android: Gradle build system with Jetpack Compose dependencies
+**iOS Development:**
+- Always use XcodeBuildMCP tools for all build operations
+- Session defaults should be configured before building/running
+- Use `screenshot` for visual validation
+- Use `describe_ui` for textual UI hierarchy analysis
+- Target simulator: iPhone 17
+- Project location: `/ios/DivStudyApp.xcworkspace`
+
+**Android Development:**
+- Not yet implemented
+- Future: Gradle build system with Jetpack Compose dependencies
+
+**Git Operations:**
+- Never execute git commits, pushes, or branch operations without explicit user request
 
 ## Architecture Insights
 
@@ -69,11 +83,20 @@ The study employed a "Codelab"-style empirical approach with five test modules:
 
 ## Important Notes
 
-- This repository serves as research documentation only
-- The actual "DivStudy App" implementation code is not included
-- Any future development should reference the architectural recommendations in the study document
-- The research focuses on integration challenges, not implementation guidance
-- Use the 'iPhone 17' simulator for testing
-- Always build and run the app via XcodeBuildMCP
-- Validate UI implementation using the XcodeBuildMCP 'describe_ui' tool
-- Always scafold the ios project using the XcodeMCPServer, don't create from scratch
+- **Project Status**: Active iOS implementation in progress, research documentation complete
+- **iOS Implementation**: Located in `/ios`, built with Xcode workspace structure
+- Development follows the architectural insights from research documentation
+- Research focus: Integration challenges between DivKit and declarative UI frameworks
+
+**Development Guidelines:**
+- Use 'iPhone 17' simulator for testing
+- Always build and run via XcodeBuildMCP (never use xcodebuild directly)
+- UI validation: `screenshot` (visual) + `describe_ui` (textual)
+- New projects: Scaffold using XcodeBuildMCP tools, don't create manually
+- Git operations: Only execute when explicitly requested by user
+
+**Code Quality:**
+- Follow SOLID, KISS, DRY, YAGNI principles
+- Maintain consistent code comments language with existing codebase
+- Prefer specialized tools over bash commands for file operations
+- Use `Context7` tools to confirm latest development documentation before coding or fixing issues

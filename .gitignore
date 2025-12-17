@@ -1,2 +1,5 @@
 # Agents
 **/*.local.*
+
+# Project
+backup/
