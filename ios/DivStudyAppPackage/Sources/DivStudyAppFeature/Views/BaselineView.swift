@@ -1,16 +1,21 @@
 import SwiftUI
+import DivKit
 
 public struct BaselineView: View {
-    @State private var jsonData: Data?
+    @State private var divViewSource: DivViewSource?
     @State private var errorMessage: String?
 
     public init() {}
 
     public var body: some View {
         VStack {
-            if let data = jsonData {
-                DivKitWrapper(jsonData: data, cardId: "baseline")
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            if let source = divViewSource {
+                DivHostingView(
+                    divkitComponents: DivKitComponentsManager.shared.divKitComponents,
+                    source: source,
+                    debugParams: DebugParams(isDebugInfoEnabled: false)
+                )
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else if let error = errorMessage {
                 VStack(spacing: 16) {
                     Image(systemName: "exclamationmark.triangle")
@@ -29,12 +34,24 @@ public struct BaselineView: View {
             }
         }
         .navigationTitle("Integration Baseline")
-        .onAppear { loadData() }
+        .task {
+            await loadData()
+        }
     }
 
-    private func loadData() {
+    @MainActor
+    private func loadData() async {
         do {
-            jsonData = try MockDataLoader.loadJSON(for: .baseline)
+            let jsonData = try MockDataLoader.loadJSON(for: .baseline)
+            guard let json = try JSONSerialization.jsonObject(with: jsonData) as? [String: Any] else {
+                errorMessage = "Invalid JSON format"
+                return
+            }
+
+            divViewSource = DivViewSource(
+                kind: .json(json),
+                cardId: DivCardID(rawValue: "baseline")
+            )
         } catch {
             errorMessage = error.localizedDescription
         }

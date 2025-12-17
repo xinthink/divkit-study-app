@@ -728,6 +728,57 @@ struct TaskListView: View {
 
 **Important:** Never use CoreData for new projects. SwiftData provides a modern, type-safe API that's easier to work with and integrates seamlessly with SwiftUI.
 
+# DivKit Integration (SwiftUI)
+
+This project integrates **DivKit 32.x** (Yandex's Server-Driven UI framework) using the official `DivHostingView` UIViewRepresentable for SwiftUI compatibility.
+
+## DivHostingView Usage
+
+DivKit provides the `DivHostingView` type that handles all UIViewRepresentable boilerplate. Use it directly without creating custom wrappers:
+
+```swift
+import SwiftUI
+import DivKit
+
+struct MyDivKitView: View {
+    @State private var divViewSource: DivViewSource?
+
+    var body: some View {
+        if let source = divViewSource {
+            DivHostingView(
+                divkitComponents: DivKitComponentsManager.shared.divKitComponents,
+                source: source,
+                debugParams: DebugParams(isDebugInfoEnabled: false)
+            )
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
+
+    @MainActor
+    private func loadCardData() async {
+        let json = /* your JSON dictionary */
+        divViewSource = DivViewSource(
+            kind: .json(json),
+            cardId: DivCardID(rawValue: "card_id")
+        )
+    }
+}
+```
+
+## Key Points
+
+- **Use `DivHostingView` directly**: No need to create custom UIViewRepresentable wrappers
+- **Initialize once**: `DivKitComponentsManager.shared` provides a singleton instance
+- **Pass `DivViewSource`**: Use `DivViewSource(kind: .json(...), cardId:...)` to set card data
+- **Size negotiation**: `DivHostingView` handles SwiftUI size negotiation via `sizeThatFits` and visibility tracking
+- **Async data updates**: Use `.task` modifier for data loading, never `onAppear` with `Task { }`
+
+## Dependencies
+
+- **DivKit iOS** 32.30.0+ from GitHub: `divkit/divkit-ios`
+- **VGSL** (Yandex utilities) - automatic transitive dependency
+- Installed via Swift Package Manager (SPM)
+
 ---
 
 Remember: This project prioritizes clean, simple SwiftUI code using the platform's native state management. Keep the app shell minimal and implement all features in the Swift Package.

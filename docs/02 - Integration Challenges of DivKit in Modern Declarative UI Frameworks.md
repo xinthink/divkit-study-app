@@ -66,33 +66,33 @@ While this pattern seems straightforward, it introduces context switching overhe
 
 **iOS Integration Baseline:**
 
-On SwiftUI, integration is achieved by conforming to the `UIViewRepresentable` protocol, bridging DivKit's `DivView` (or its iOS-specific wrapper) into SwiftUI's view hierarchy.
+On SwiftUI, DivKit provides a ready-made `UIViewRepresentable` implementation called `DivHostingView` that handles the bridging of DivKit's `DivView` into SwiftUI's view hierarchy. This eliminates the need for developers to manually implement the `UIViewRepresentable` protocol.
 
-// Code Snippet 2.2: Basic iOS Integration
+// Code Snippet 2.2: Basic iOS Integration (Using Official DivHostingView)
 
-struct DivKitWrapper: UIViewRepresentable {
+struct BaselineView: View {
 
-    let jsonData: Data
+    @State private var divViewSource: DivViewSource?
 
-    func makeUIView(context: Context) \-\> DivView {
+    var body: some View {
 
-        let components \= DivKitComponents()
+        if let source = divViewSource {
 
-        let view \= DivView(divKitComponents: components)
+            DivHostingView(
 
-        return view
+                divkitComponents: DivKitComponentsManager.shared.divKitComponents,
 
-    }
+                source: source
 
-    func updateUIView(\_ uiView: DivView, context: Context) {
+            )
 
-        // Data update logic
+        }
 
     }
 
 }
 
-Through the implementation of these two baseline codes, we established the starting point for the experiment, subsequently introducing complex scenarios to trigger potential issues.
+Through the implementation of these two baseline codes using DivKit's official `DivHostingView`, we established the starting point for the experiment, subsequently introducing complex scenarios to trigger potential issues. Note that while the baseline integration is simplified, the core architectural challenges described in this report (State Management Black Box, UI Island effects, Type Erasure, Debugging limitations, and Security vulnerabilities) remain applicable regardless of whether a custom or official wrapper is used.
 
 ## **3\. Core Issue One: State Management "Black Box" Effect and Synchronization Dilemma**
 

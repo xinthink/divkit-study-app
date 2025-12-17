@@ -121,5 +121,56 @@ To include assets in your feature package:
 )
 ```
 
+## DivKit Integration
+
+This project integrates **DivKit 32.x**, Yandex's Server-Driven UI framework, for dynamic UI rendering from JSON configurations.
+
+### Quick Start: Using DivHostingView
+
+DivKit provides the official `DivHostingView` type for SwiftUI integration. Use it directly without custom wrappers:
+
+```swift
+import SwiftUI
+import DivKit
+
+struct CardView: View {
+    @State private var cardSource: DivViewSource?
+
+    var body: some View {
+        if let source = cardSource {
+            DivHostingView(
+                divkitComponents: DivKitComponentsManager.shared.divKitComponents,
+                source: source
+            )
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else {
+            ProgressView("Loading...")
+        }
+    }
+
+    @MainActor
+    private func loadCard() async {
+        // Parse your JSON and create source
+        let json = [ /* your DivKit JSON */ ]
+        cardSource = DivViewSource(
+            kind: .json(json),
+            cardId: DivCardID(rawValue: "unique_id")
+        )
+    }
+}
+```
+
+### Key Integration Points
+
+- **Components Manager**: `DivKitComponentsManager.shared` provides the singleton DivKit component instance
+- **Data Source**: Use `DivViewSource(kind: .json(...), cardId:...)` to set card JSON
+- **Size Handling**: `DivHostingView` automatically handles SwiftUI size negotiation
+- **Lifecycle**: Load data in `.task` modifier, not `onAppear` + `Task {}`
+
+### Dependencies
+
+- **DivKit iOS** 32.30.0+ - configured in `DivStudyAppPackage/Package.swift`
+- See `CLAUDE.md` for full DivKit integration guidelines
+
 ### Generated with XcodeBuildMCP
 This project was scaffolded using [XcodeBuildMCP](https://github.com/cameroncooke/XcodeBuildMCP), which provides tools for AI-assisted iOS development workflows.

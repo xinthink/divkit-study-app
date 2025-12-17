@@ -50,7 +50,7 @@ Based on the study documentation, the experimental app was designed for:
 **iOS Development:**
 - Always use XcodeBuildMCP tools for all build operations
 - Session defaults should be configured before building/running
-- Use `screenshot` for visual validation
+- **DON'T** use `screenshot` for visual validation
 - Use `describe_ui` for textual UI hierarchy analysis
 - Target simulator: iPhone 17
 - Project location: `/ios/DivStudyApp.xcworkspace`
@@ -91,7 +91,7 @@ The study employed a "Codelab"-style empirical approach with five test modules:
 **Development Guidelines:**
 - Use 'iPhone 17' simulator for testing
 - Always build and run via XcodeBuildMCP (never use xcodebuild directly)
-- UI validation: `screenshot` (visual) + `describe_ui` (textual)
+- UI validation: use `describe_ui` (textual), avoid using `screenshot` (visual) now
 - New projects: Scaffold using XcodeBuildMCP tools, don't create manually
 - Git operations: Only execute when explicitly requested by user
 
