@@ -96,7 +96,7 @@ Through the implementation of these two baseline codes using DivKit's official `
 
 ## **3\. Core Issue One: State Management "Black Box" Effect and Synchronization Dilemma**
 
-In declarative UI, the core tenet is the "Single Source of Truth (SSOT)". UI is a function of state: UI=f(State). However, DivKit, as an independent rendering engine, maintains its own complete state machine, including Variables, Triggers, and Timers. This results in two parallel state systems in the application: the Host Native State and the DivKit Internal State (Div State).
+In declarative UI, the core tenet is the "Single Source of Truth (SSOT)". UI is a function of state: `UI=f(State)`. However, DivKit, as an independent rendering engine, maintains its own complete state machine, including Variables, Triggers, and Timers. This results in two parallel state systems in the application: the Host Native State and the DivKit Internal State (Div State).
 
 ### **3.1 Theoretical Conflict: Reactive Stream vs. Internal State Machine**
 
@@ -172,7 +172,7 @@ During the experiment, we unintentionally triggered a severe crash scenario—th
 
 2. **Loopback**: DivKit Variable updates \-\> Triggers `addObserver` callback \-\> Callback updates Native State.
 
-3. **Deadlock**: Native State updates again \-\> Pushes to DivKit again.  
+3. **Deadlock**: Native State updates again \-\> Pushes to DivKit again.
    If the Native State update logic does not include strict "**deduplication checks**" (i.e., `if (newValue != oldValue)`), the process above will form infinite recursion, leading to a main thread freeze or Stack Overflow. The experiment demonstrated that DivKit's variable update notification mechanism is extremely sensitive, with any minor assignment operation triggering a notification, requiring developers to handle data flow with extreme rigor at the bridging layer.
 
 ### **3.4 Performance Cost: Main Thread "Variable Storm"**
@@ -365,7 +365,7 @@ To defend against the attacks described above, the experiment showed that develo
 
 1. **Override DivActionHandler**: Intercept all `url` actions and establish a strict Protocol/Host whitelist.
 
-2. **Variable Scope Isolation**: Avoid putting sensitive business states into DivKit's global variable pool.  
+2. **Variable Scope Isolation**: Avoid putting sensitive business states into DivKit's global variable pool.
    This significantly increases the **security auditing cost** of integration.
 
 ## **8\. Comprehensive Architectural Recommendations and Future Outlook**

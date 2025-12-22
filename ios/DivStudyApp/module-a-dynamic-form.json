@@ -1,0 +1,141 @@
+{
+  "templates": {},
+  "card": {
+    "log_id": "module_a_dynamic_form",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "paddings": {
+            "left": 20,
+            "right": 20,
+            "top": 24,
+            "bottom": 24
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "Module A: Dynamic Form",
+              "font_size": 22,
+              "font_weight": "bold",
+              "text_color": "#000000",
+              "margins": {
+                "bottom": 8
+              }
+            },
+            {
+              "type": "text",
+              "text": "State Management Black Box Lab",
+              "font_size": 14,
+              "text_color": "#666666",
+              "margins": {
+                "bottom": 16
+              }
+            },
+            {
+              "type": "separator",
+              "delimiter_style": {
+                "color": "#E0E0E0"
+              },
+              "margins": {
+                "bottom": 20
+              }
+            },
+            {
+              "type": "text",
+              "text": "DivKit Rendered Section",
+              "font_size": 16,
+              "font_weight": "medium",
+              "text_color": "#333333",
+              "margins": {
+                "bottom": 12
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "center",
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#F0E5E5"
+                }
+              ],
+              "border": {
+                "corner_radius": 12
+              },
+              "paddings": {
+                "left": 16,
+                "right": 16,
+                "top": 12,
+                "bottom": 12
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "💝 Toggle Like",
+                  "font_size": 18,
+                  "font_weight": "medium",
+                  "text_color": "#FF0000"
+                }
+              ],
+              "actions": [
+                {
+                  "log_id": "toggle_like",
+                  "url": "div-action://set_variable?name=is_liked&value=@{!is_liked}"
+                }
+              ],
+              "margins": {
+                "bottom": 12
+              }
+            },
+            {
+              "type": "text",
+              "text": "DivKit Internal State: (check console logs)",
+              "font_size": 14,
+              "text_color": "#999999",
+              "margins": {
+                "bottom": 20
+              }
+            },
+            {
+              "type": "separator",
+              "delimiter_style": {
+                "color": "#E0E0E0"
+              },
+              "margins": {
+                "bottom": 16
+              }
+            },
+            {
+              "type": "text",
+              "text": "Instructions:",
+              "font_size": 14,
+              "font_weight": "medium",
+              "text_color": "#333333",
+              "margins": {
+                "bottom": 8
+              }
+            },
+            {
+              "type": "text",
+              "text": "• Toggle the native SwiftUI switch below\n• Tap the DivKit button above\n• Both should stay synchronized\n• Watch console logs for sync events",
+              "font_size": 13,
+              "text_color": "#666666",
+              "line_height": 20
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "variables": [
+    {
+      "name": "is_liked",
+      "type": "boolean",
+      "value": false
+    }
+  ]
+}

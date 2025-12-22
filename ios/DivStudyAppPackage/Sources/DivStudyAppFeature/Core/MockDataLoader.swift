@@ -4,6 +4,7 @@ public enum MockDataLoader {
 
     public enum JSONFile: String {
         case baseline = "baseline-hello-world"
+        case moduleA = "module-a-dynamic-form"
     }
 
     public static func loadJSON(for file: JSONFile) throws -> Data {
