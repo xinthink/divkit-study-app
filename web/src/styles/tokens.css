@@ -1,0 +1,194 @@
+/* Design Tokens - Primitive Collection */
+:root {
+  /* Colors - Blue (Ocean Brand) */
+  --primitive-blue-100: #EBF8FF;
+  --primitive-blue-200: #BEE3F8;
+  --primitive-blue-300: #90CDF4;
+  --primitive-blue-400: #63B3ED;
+  --primitive-blue-500: #4299E1;
+  --primitive-blue-600: #3182CE;
+  --primitive-blue-700: #2B6CB0;
+  --primitive-blue-800: #2C5282;
+  --primitive-blue-900: #2A4365;
+
+  /* Colors - Red (Volcano Brand) */
+  --primitive-red-100: #FFF5F5;
+  --primitive-red-200: #FED7D7;
+  --primitive-red-300: #FEB2B2;
+  --primitive-red-400: #FC8181;
+  --primitive-red-500: #F56565;
+  --primitive-red-600: #E53E3E;
+  --primitive-red-700: #C53030;
+  --primitive-red-800: #9B2C2C;
+  --primitive-red-900: #742A2A;
+
+  /* Colors - Neutral */
+  --primitive-neutral-white: #FFFFFF;
+  --primitive-neutral-black: #000000;
+  --primitive-neutral-gray-50: #F9FAFB;
+  --primitive-neutral-gray-100: #F3F4F6;
+  --primitive-neutral-gray-200: #E5E7EB;
+  --primitive-neutral-gray-300: #D1D5DB;
+  --primitive-neutral-gray-400: #9CA3AF;
+  --primitive-neutral-gray-500: #6B7280;
+  --primitive-neutral-gray-600: #4B5563;
+  --primitive-neutral-gray-700: #374151;
+  --primitive-neutral-gray-800: #1F2937;
+  --primitive-neutral-gray-900: #111827;
+
+  /* Numbers - Spacing */
+  --primitive-num-4: 4px;
+  --primitive-num-8: 8px;
+  --primitive-num-12: 12px;
+  --primitive-num-16: 16px;
+  --primitive-num-20: 20px;
+  --primitive-num-24: 24px;
+  --primitive-num-32: 32px;
+  --primitive-num-40: 40px;
+  --primitive-num-48: 48px;
+  --primitive-num-999: 999px;
+
+  /* Font Families */
+  --primitive-font-system: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  --primitive-font-rounded: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", ui-rounded, sans-serif;
+}
+
+/* Semantic Tokens - Ocean Light Mode */
+[data-brand="ocean"][data-theme="light"] {
+  /* Color Tokens */
+  --color-brand-primary: var(--primitive-blue-500);
+  --color-brand-primary-hover: var(--primitive-blue-600);
+  --color-brand-primary-active: var(--primitive-blue-700);
+  --color-brand-secondary: var(--primitive-blue-100);
+  
+  --color-bg-canvas: var(--primitive-neutral-white);
+  --color-bg-surface: var(--primitive-neutral-gray-50);
+  --color-bg-elevated: var(--primitive-neutral-white);
+  --color-bg-input: var(--primitive-neutral-gray-100);
+  
+  --color-text-primary: var(--primitive-neutral-gray-900);
+  --color-text-secondary: var(--primitive-neutral-gray-600);
+  --color-text-tertiary: var(--primitive-neutral-gray-500);
+  --color-text-onBrand: var(--primitive-neutral-white);
+  
+  --color-border-default: var(--primitive-neutral-gray-200);
+  --color-border-input: var(--primitive-neutral-gray-300);
+  --color-border-focus: var(--primitive-blue-500);
+
+  /* Dimension Tokens */
+  --dim-radius-card: var(--primitive-num-8);
+  --dim-radius-button: var(--primitive-num-4);
+  --dim-radius-input: var(--primitive-num-8);
+  --dim-spacing-base: var(--primitive-num-8);
+  --dim-spacing-section: var(--primitive-num-24);
+
+  /* Typography Tokens */
+  --font-family-heading: var(--primitive-font-system);
+  --font-family-body: var(--primitive-font-system);
+}
+
+/* Semantic Tokens - Ocean Dark Mode */
+[data-brand="ocean"][data-theme="dark"] {
+  --color-brand-primary: var(--primitive-blue-400);
+  --color-brand-primary-hover: var(--primitive-blue-500);
+  --color-brand-primary-active: var(--primitive-blue-600);
+  --color-brand-secondary: var(--primitive-blue-900);
+  
+  --color-bg-canvas: var(--primitive-neutral-gray-900);
+  --color-bg-surface: var(--primitive-neutral-gray-800);
+  --color-bg-elevated: var(--primitive-neutral-gray-700);
+  --color-bg-input: var(--primitive-neutral-gray-800);
+  
+  --color-text-primary: var(--primitive-neutral-white);
+  --color-text-secondary: var(--primitive-neutral-gray-300);
+  --color-text-tertiary: var(--primitive-neutral-gray-400);
+  --color-text-onBrand: var(--primitive-neutral-black);
+  
+  --color-border-default: var(--primitive-neutral-gray-700);
+  --color-border-input: var(--primitive-neutral-gray-600);
+  --color-border-focus: var(--primitive-blue-400);
+
+  --dim-radius-card: var(--primitive-num-8);
+  --dim-radius-button: var(--primitive-num-4);
+  --dim-radius-input: var(--primitive-num-8);
+  --dim-spacing-base: var(--primitive-num-8);
+  --dim-spacing-section: var(--primitive-num-24);
+
+  --font-family-heading: var(--primitive-font-system);
+  --font-family-body: var(--primitive-font-system);
+}
+
+/* Semantic Tokens - Volcano Light Mode */
+[data-brand="volcano"][data-theme="light"] {
+  --color-brand-primary: var(--primitive-red-500);
+  --color-brand-primary-hover: var(--primitive-red-600);
+  --color-brand-primary-active: var(--primitive-red-700);
+  --color-brand-secondary: var(--primitive-red-100);
+  
+  --color-bg-canvas: var(--primitive-neutral-white);
+  --color-bg-surface: var(--primitive-neutral-gray-50);
+  --color-bg-elevated: var(--primitive-neutral-white);
+  --color-bg-input: var(--primitive-neutral-gray-100);
+  
+  --color-text-primary: var(--primitive-neutral-gray-900);
+  --color-text-secondary: var(--primitive-neutral-gray-600);
+  --color-text-tertiary: var(--primitive-neutral-gray-500);
+  --color-text-onBrand: var(--primitive-neutral-white);
+  
+  --color-border-default: var(--primitive-neutral-gray-200);
+  --color-border-input: var(--primitive-neutral-gray-300);
+  --color-border-focus: var(--primitive-red-500);
+
+  /* Volcano specific - Large radius (Capsule style) */
+  --dim-radius-card: var(--primitive-num-24);
+  --dim-radius-button: var(--primitive-num-999);
+  --dim-radius-input: var(--primitive-num-24);
+  --dim-spacing-base: var(--primitive-num-8);
+  --dim-spacing-section: var(--primitive-num-24);
+
+  /* Volcano specific - Rounded font */
+  --font-family-heading: var(--primitive-font-rounded);
+  --font-family-body: var(--primitive-font-rounded);
+}
+
+/* Semantic Tokens - Volcano Dark Mode */
+[data-brand="volcano"][data-theme="dark"] {
+  --color-brand-primary: var(--primitive-red-400);
+  --color-brand-primary-hover: var(--primitive-red-500);
+  --color-brand-primary-active: var(--primitive-red-600);
+  --color-brand-secondary: var(--primitive-red-900);
+  
+  --color-bg-canvas: var(--primitive-neutral-gray-900);
+  --color-bg-surface: var(--primitive-neutral-gray-800);
+  --color-bg-elevated: var(--primitive-neutral-gray-700);
+  --color-bg-input: var(--primitive-neutral-gray-800);
+  
+  --color-text-primary: var(--primitive-neutral-white);
+  --color-text-secondary: var(--primitive-neutral-gray-300);
+  --color-text-tertiary: var(--primitive-neutral-gray-400);
+  --color-text-onBrand: var(--primitive-neutral-black);
+  
+  --color-border-default: var(--primitive-neutral-gray-700);
+  --color-border-input: var(--primitive-neutral-gray-600);
+  --color-border-focus: var(--primitive-red-400);
+
+  --dim-radius-card: var(--primitive-num-24);
+  --dim-radius-button: var(--primitive-num-999);
+  --dim-radius-input: var(--primitive-num-24);
+  --dim-spacing-base: var(--primitive-num-8);
+  --dim-spacing-section: var(--primitive-num-24);
+
+  --font-family-heading: var(--primitive-font-rounded);
+  --font-family-body: var(--primitive-font-rounded);
+}
+
+/* Global typography setup */
+body {
+  font-family: var(--font-family-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-canvas);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+}
