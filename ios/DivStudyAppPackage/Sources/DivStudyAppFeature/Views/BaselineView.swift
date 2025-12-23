@@ -4,11 +4,40 @@ import DivKit
 public struct BaselineView: View {
     @State private var divViewSource: DivViewSource?
     @State private var errorMessage: String?
+    @EnvironmentObject private var themeManager: ThemeManager
 
     public init() {}
 
     public var body: some View {
         VStack {
+            HStack {
+                Spacer()
+                Toggle("Dark Mode", isOn: Binding(
+                    get: { themeManager.currentTheme == .dark },
+                    set: { _ in themeManager.toggleTheme() }
+                ))
+                .fixedSize(horizontal: true, vertical: false)
+                .padding(.trailing)
+            }
+
+            Divider()
+              .padding()
+
+            Text("Native Views")
+                .font(.title2)
+                .fontWeight(.bold)
+                .padding(.bottom, 8)
+            Text("This a native text")
+                .font(.subheadline)
+                .foregroundColor(.primary)
+                .padding(.bottom, 16)
+
+            Divider()
+              .padding()
+            Text("DivKit Views")
+                .font(.title2)
+                .fontWeight(.bold)
+                .padding(.bottom, 8)
             if let source = divViewSource {
                 DivHostingView(
                     divkitComponents: DivKitComponentsManager.shared.divKitComponents,
